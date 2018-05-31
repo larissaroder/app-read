@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import ActionNoteAdd from 'material-ui/svg-icons/action/note-add';
 import ActionThumbUp from 'material-ui/svg-icons/action/thumb-up';
 import ActionThumbDown from 'material-ui/svg-icons/action/thumb-down';
@@ -35,18 +32,17 @@ import { Error404View } from '../error/Error404View';
 class PostDetailFormView extends Component {
 
     componentDidMount() {
-        let { PostEntity, history } = this.props;
         let postId = this.props.match.params.postId;
         this.props.getPostDetailAction(postId, this.props.history);
         this.props.getAllCommentsByPostIdAction(postId);
     }
 
     render() {
-        let { PostEntity, comments, history } = this.props;
+        let { PostEntity, comments, location } = this.props;
         let { title, body, author, voteScore, timestamp } = PostEntity;
          // Validando
-        if (!PostEntity) {
-            return (<div><Error404View location={"/"} /></div>)
+        if (!PostEntity || !PostEntity.id || PostEntity.id === "") {
+            return (<div><Error404View location={location}/></div>)
         }
         return (<div>
             <AppBar title="Detail"

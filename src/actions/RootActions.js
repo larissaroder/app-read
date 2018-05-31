@@ -35,7 +35,7 @@ export const rootListCategoriesAction = () => {
 export const rootListPostsAction = (categoryId) => {
     return dispatch => {
         Api.getAllPosts().then(posts => {
-            posts.map(post => {
+            posts.forEach(post => {
                 Api.getAllCommentsByPostId(post.id).then(comments => {
                     post.totalComments = comments.length;
                     dispatch({ type: ROOT_LIST_POSTS, payload: posts })

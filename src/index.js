@@ -5,7 +5,7 @@ import { BrowserRouter } from 'react-router-dom';
 import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import RouterApp from './router';
+import { RouterApp } from './router';
 import { store } from './store';
 
 ReactDOM.render(
