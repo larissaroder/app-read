@@ -28,13 +28,13 @@ export const Commentary = ({ CommentEntity, handleEditComment, handleRemoveComme
             </IconButton>
             <IconButton touch={true}
                 tooltip="Edit Comment"
-                onClick={() => handleEditComment(CommentEntity.id)}>
-                <EditorModeEdit />
+                onClick={() => handleEditComment(CommentEntity.id, "edit")}>
+                <EditorModeEdit color={green500} />
             </IconButton>
             <IconButton touch={true}
                 tooltip="Delete Comment"
-                onClick={() => handleRemoveComment(CommentEntity.id)}>
-                <ActionDelete />
+                onClick={() => handleRemoveComment(CommentEntity.id, "delete")}>
+                <ActionDelete color={red500}  />
             </IconButton>
         </div>
     </div>

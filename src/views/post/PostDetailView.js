@@ -30,6 +30,7 @@ import { red500, blue500, green500 } from 'material-ui/styles/colors';
 import { Commentary } from '../../components';
 import PostFormView from '../post/PostFormView';
 import CommentFromView from '../comment/CommentFormView';
+import { Error404View } from '../error/Error404View';
 
 class PostDetailFormView extends Component {
 
@@ -38,16 +39,15 @@ class PostDetailFormView extends Component {
         let postId = this.props.match.params.postId;
         this.props.getPostDetailAction(postId, this.props.history);
         this.props.getAllCommentsByPostIdAction(postId);
-        // Validando
-        if (PostEntity.error !== undefined) {
-            alert("Sorry this post was not found.");
-            history.push("/");
-        }
     }
 
     render() {
-        let { PostEntity, comments } = this.props;
+        let { PostEntity, comments, history } = this.props;
         let { title, body, author, voteScore, timestamp } = PostEntity;
+         // Validando
+        if (!PostEntity) {
+            return (<div><Error404View location={"/"} /></div>)
+        }
         return (<div>
             <AppBar title="Detail"
                 iconElementLeft={

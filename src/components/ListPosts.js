@@ -26,7 +26,7 @@ export const ListPosts = ({ posts, history, handleVotePost, handleEditPost, hand
         <List>
             {posts.map(p => (
                 <div onClick={() => history.push(`/${p.category}/${p.id}`)} key={p.id}>
-                    <ListItem
+                    <ListItem 
                         leftIcon={
                             <Badge
                                 badgeContent={p.voteScore}
@@ -49,14 +49,14 @@ export const ListPosts = ({ posts, history, handleVotePost, handleEditPost, hand
                                     leftIcon={<ActionDelete />}
                                     onClick={() => handleDeletePost(p.id)}>Delete</MenuItem>
                             </IconMenu>}
-                        primaryText={p.title}
+                        primaryText={<span style={{ color: '#CCC' }}>{p.title}</span>}
                         secondaryText={
                             <p>
                                 <span style={{ color: '#CCC' }}>
                                     <EditorInsertInvitation style={Styles.ListPostsStyle.Icon} />
                                     {moment(p.timestamp).format("DD/MM/YY HH:mm")}
                                     , {p.author}
-                                    , Total comments: {p.totalComments}
+                                    , Total comments: {p.commentCount}
                                 </span>
                                 <br />
                                 {p.body.substring(0, 100)}
